@@ -6,7 +6,28 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Scene", menuName = "Scriptable Objects/Scene")]
 public class Scene : ScriptableObject
 {
+    private static Scene _instance;
     [SerializeField] private AudioMixer mixer;
+
+    public static Scene Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                // Load the ScriptableObject from a known Resources path
+                _instance = Resources.Load<Scene>("Scene");
+
+                if (_instance == null)
+                    Debug.LogError("Scene ScriptableObject not found in Resources folder!");
+            }
+
+            return _instance;
+        }
+    }
+
+
+
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
@@ -53,5 +74,10 @@ public class Scene : ScriptableObject
     public void DisplayUI(GameObject UI)
     {
         UI.SetActive(true);
+    }
+
+    public void ToggleUI(GameObject UI)
+    {
+        UI.SetActive(!UI.activeInHierarchy);
     }
 }

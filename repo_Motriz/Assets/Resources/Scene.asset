@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3c19d441794ad347a425c52def6e022, type: 3}
-  m_Name: SceneManager
+  m_Name: Scene
   m_EditorClassIdentifier: Assembly-CSharp::Scene
   mixer: {fileID: 24100000, guid: eb271c1a2ffd4884eb5db42f098f3828, type: 2}
