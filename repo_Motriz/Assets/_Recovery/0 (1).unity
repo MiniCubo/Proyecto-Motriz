@@ -2501,7 +2501,6 @@ MonoBehaviour:
   - {fileID: 378349827}
   - {fileID: 1569174763}
   text: {fileID: 159350582}
-  popup: {fileID: 1644243862}
 --- !u!1 &901889714
 GameObject:
   m_ObjectHideFlags: 0
