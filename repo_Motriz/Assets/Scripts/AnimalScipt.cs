@@ -32,7 +32,7 @@ public class AnimalScipt : MonoBehaviour
         int rand = Random.Range(0, animals.Length);
         current = rand;
         choosen.Add(rand, true);
-        text.text = animalsButtons[rand].image.name;
+        text.text = animalsButtons[rand].gameObject.GetComponent<Image>().sprite.name;
         animalsButtons[rand].interactable = true;
         audioSources[rand].Play();
         //AppearText();
@@ -58,7 +58,7 @@ public class AnimalScipt : MonoBehaviour
         while (choosen.ContainsKey(rand)) rand = Random.Range(0, animals.Length);
         current = rand;
         choosen.Add(rand, true);
-        text.text = animalsButtons[rand].image.name;
+        text.text = animalsButtons[rand].gameObject.GetComponent<Image>().sprite.name;
         animalsButtons[rand].interactable = true;
         audioSources[rand].Play();
         AppearText();

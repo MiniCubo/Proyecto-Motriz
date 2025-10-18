@@ -80,4 +80,9 @@ public class Scene : ScriptableObject
     {
         UI.SetActive(!UI.activeInHierarchy);
     }
+
+    public void ChangeSlider(float value)
+    {
+
+    }
 }

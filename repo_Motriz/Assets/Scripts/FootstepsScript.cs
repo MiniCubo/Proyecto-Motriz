@@ -30,6 +30,8 @@ public class FootstepsScript : MonoBehaviour
             cont++;
             timer = 0.1f;
             rt.position = footstepsPositions[cont].position;
+            if (footstepsPositions[cont].name.Contains("Wide")) rt.sizeDelta = new Vector2(footstepsPositions[cont].GetComponent<RectTransform>().sizeDelta.x, 100);
+            else rt.sizeDelta = new Vector2(100, 100);
         }
     }
 
