@@ -11,10 +11,7 @@ public class audioScript : MonoBehaviour
     {
         audioSource.Play(0);
     }
-    //public void Start()
-    //{
-    //    continiousAudio.Play(0);    
-    //}
+
 
     private void Awake()
     {

@@ -13,13 +13,13 @@ public class AnimalScipt : MonoBehaviour
     [SerializeField] private GameObject popup;
 
     private float timer;
-    private Dictionary<int, bool> choosen;
     int current;
+    int count;
     
-    private void Start()
+    private void Awake()
     {
         timer = 0f;
-        choosen = new Dictionary<int, bool>();
+        current = -1;
         animalsButtons = new List<Button>();
         audioSources = new List<AudioSource>();
         foreach (var animal in animals)
@@ -28,14 +28,7 @@ public class AnimalScipt : MonoBehaviour
             animalsButtons.Add(animal.GetComponent<Button>());
         }
 
-        timer = 0.5f;
-        int rand = Random.Range(0, animals.Length);
-        current = rand;
-        choosen.Add(rand, true);
-        text.text = animalsButtons[rand].gameObject.GetComponent<Image>().sprite.name;
-        animalsButtons[rand].interactable = true;
-        audioSources[rand].Play();
-        //AppearText();
+        count = 0;
     }
 
     private void Update()
@@ -43,25 +36,33 @@ public class AnimalScipt : MonoBehaviour
         timer -= Time.deltaTime;
     }
 
-    public void NextAnimal()
+    public bool NextAnimal(int next)
     {
-        if (timer > 0f) return;
-        if (choosen.Count == animals.Length) 
+        if (timer > 0f) return false;
+        if (count == animals.Length) 
         {
             Victory();
-            return;
+            return false;
+        }
+        if (animalsButtons == null)
+        {
+            animalsButtons = new List<Button>();
+            audioSources = new List<AudioSource>();
+            foreach (var animal in animals)
+            {
+                audioSources.Add(animal.GetComponent<AudioSource>());
+                animalsButtons.Add(animal.GetComponent<Button>());
+            }
         }
         timer = 0.5f;
-        if (!animalsButtons[current].gameObject.activeSelf) return; 
-        animalsButtons[current].interactable = false;
-        int rand = Random.Range(0, animals.Length);
-        while (choosen.ContainsKey(rand)) rand = Random.Range(0, animals.Length);
-        current = rand;
-        choosen.Add(rand, true);
-        text.text = animalsButtons[rand].gameObject.GetComponent<Image>().sprite.name;
-        animalsButtons[rand].interactable = true;
-        audioSources[rand].Play();
+        if(current >= 0) animalsButtons[current].interactable = false;
+        count++;
+        current = next;
+        text.text = animalsButtons[next].gameObject.GetComponent<Image>().sprite.name;
+        animalsButtons[next].interactable = true;
+        audioSources[next].Play();
         AppearText();
+        return true;
     }
 
     public void AppearText()
