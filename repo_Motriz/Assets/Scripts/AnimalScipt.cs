@@ -12,9 +12,14 @@ public class AnimalScipt : MonoBehaviour
     [SerializeField] private TMP_Text text;
     [SerializeField] private GameObject popup;
 
+    public bool animalSound;
+    public bool animalName;
+
     private float timer;
     int current;
     int count;
+
+    private Animator animator;
     
     private void Awake()
     {
@@ -22,6 +27,9 @@ public class AnimalScipt : MonoBehaviour
         current = -1;
         animalsButtons = new List<Button>();
         audioSources = new List<AudioSource>();
+        animator = GetComponent<Animator>();
+        animalName = true;
+        animalSound = true;
         foreach (var animal in animals)
         {
             audioSources.Add(animal.GetComponent<AudioSource>());
@@ -60,15 +68,26 @@ public class AnimalScipt : MonoBehaviour
         current = next;
         text.text = animalsButtons[next].gameObject.GetComponent<Image>().sprite.name;
         animalsButtons[next].interactable = true;
-        audioSources[next].Play();
-        AppearText();
+        if(animalSound) audioSources[next].Play();
+        if(animalName) AppearText();
         return true;
+    }
+
+    public void SetAnimalSound(bool sound)
+    {
+        animalSound = sound;
+    }
+
+    public void SetAnimalName(bool name)
+    {
+        animalName = name;
     }
 
     public void AppearText()
     {
-        gameObject.SetActive(false);
-        gameObject.SetActive(true);
+        Debug.Log(animator);
+        if (animator == null) GetComponent<Animator>();
+        animator.Play("UpDown");
     }
 
     private void Victory()

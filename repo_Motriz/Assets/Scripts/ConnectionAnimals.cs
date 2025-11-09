@@ -16,9 +16,11 @@ public class ConnectionAnimals : MonoBehaviour
 
     public void NextAnimal()
     {
-        foreach(var script in scripts)
+        GameObject even = GameObject.FindGameObjectWithTag("Event");
+        if (even != null)
         {
-            if (!script.gameObject.activeSelf) return;
+            Debug.Log("A");
+            if (even.activeSelf) return;
         }
         int rand = Random.Range(0, animals.Length);
         if(choosen.Count == animals.Length)
