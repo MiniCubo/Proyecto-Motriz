@@ -13,7 +13,7 @@ public class ConnectionAnimals : MonoBehaviour
     {
         choosen = new Dictionary<int, bool>();
     }
-
+    
     public void NextAnimal()
     {
         GameObject even = GameObject.FindGameObjectWithTag("Event");

@@ -400,7 +400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Volumen
+  m_text: Musica
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a40458328347cc4438fcb76d810a4d2c, type: 2}
   m_sharedMaterial: {fileID: -5787880706772352209, guid: a40458328347cc4438fcb76d810a4d2c, type: 2}
@@ -1110,6 +1110,7 @@ GameObject:
   - component: {fileID: 526533986}
   - component: {fileID: 526533985}
   - component: {fileID: 526533984}
+  - component: {fileID: 526533989}
   m_Layer: 5
   m_Name: Display 2 (1)
   m_TagString: Untagged
@@ -1241,6 +1242,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 2
+--- !u!114 &526533989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526533982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1a252706e9f254597f1b3e6dc3b56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeMaster
+  sfxSlider: {fileID: 813777891}
+  musicSlider: {fileID: 865737358}
 --- !u!1 &527147944
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1552,6 @@ GameObject:
   - component: {fileID: 619692823}
   - component: {fileID: 619692822}
   - component: {fileID: 619692821}
-  - component: {fileID: 619692824}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -1660,19 +1674,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619692819}
   m_CullTransparentMesh: 1
---- !u!114 &619692824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 619692819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d72929d89df20444bf606576ccfeac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::sceneManager
-  scene: LevelSelect
 --- !u!1 &633795937
 GameObject:
   m_ObjectHideFlags: 0
@@ -2529,9 +2530,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 813777890}
-        m_TargetAssemblyTypeName: SliderScript, Assembly-CSharp
-        m_MethodName: OnChange
+      - m_Target: {fileID: 11400000, guid: e88ffccbf25e33a46b61688643788ddc, type: 2}
+        m_TargetAssemblyTypeName: Scene, Assembly-CSharp
+        m_MethodName: SetSFX
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2673,7 +2674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Brillo
+  m_text: Efectos de Sonido
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a40458328347cc4438fcb76d810a4d2c, type: 2}
   m_sharedMaterial: {fileID: -5787880706772352209, guid: a40458328347cc4438fcb76d810a4d2c, type: 2}
@@ -2837,7 +2838,6 @@ GameObject:
   m_Component:
   - component: {fileID: 865737356}
   - component: {fileID: 865737358}
-  - component: {fileID: 865737357}
   m_Layer: 5
   m_Name: Volumen Slider
   m_TagString: Untagged
@@ -2867,19 +2867,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 400, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &865737357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 865737355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d039a36417b5b14285b77cb5f337c3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SliderScript
-  other: {fileID: 1832770750}
 --- !u!114 &865737358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2933,19 +2920,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: e88ffccbf25e33a46b61688643788ddc, type: 2}
         m_TargetAssemblyTypeName: Scene, Assembly-CSharp
-        m_MethodName: SetVolume
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 865737357}
-        m_TargetAssemblyTypeName: SliderScript, Assembly-CSharp
-        m_MethodName: OnChange
+        m_MethodName: SetMusic
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3516,6 +3491,7 @@ GameObject:
   - component: {fileID: 962160674}
   - component: {fileID: 962160673}
   - component: {fileID: 962160672}
+  - component: {fileID: 962160677}
   m_Layer: 5
   m_Name: Display 2
   m_TagString: Untagged
@@ -3647,6 +3623,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 1
+--- !u!114 &962160677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962160670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1a252706e9f254597f1b3e6dc3b56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeMaster
+  sfxSlider: {fileID: 1898764255}
+  musicSlider: {fileID: 1303734498}
 --- !u!1 &996507826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4568,7 +4558,6 @@ GameObject:
   - component: {fileID: 1205461962}
   - component: {fileID: 1205461961}
   - component: {fileID: 1205461960}
-  - component: {fileID: 1205461959}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -4597,19 +4586,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -65}
   m_SizeDelta: {x: 600, y: 130}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1205461959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205461957}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d72929d89df20444bf606576ccfeac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::sceneManager
-  scene: LevelSelect
 --- !u!114 &1205461960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5096,7 +5072,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1303734497}
   - component: {fileID: 1303734498}
-  - component: {fileID: 1303734499}
   m_Layer: 5
   m_Name: Volumen Slider
   m_TagString: Untagged
@@ -5179,7 +5154,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: e88ffccbf25e33a46b61688643788ddc, type: 2}
         m_TargetAssemblyTypeName: Scene, Assembly-CSharp
-        m_MethodName: SetVolume
+        m_MethodName: SetMusic
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5189,31 +5164,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1303734499}
-        m_TargetAssemblyTypeName: SliderScript, Assembly-CSharp
-        m_MethodName: OnChange
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1303734499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303734496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d039a36417b5b14285b77cb5f337c3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SliderScript
-  other: {fileID: 1832770750}
 --- !u!1 &1310314009
 GameObject:
   m_ObjectHideFlags: 0
@@ -5289,35 +5239,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310314009}
   m_CullTransparentMesh: 1
---- !u!1 &1324742300 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6034634409552896047, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
-  m_PrefabInstance: {fileID: 8386944916174463465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1324742302 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2390406369395564415, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
   m_PrefabInstance: {fileID: 8386944916174463465}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324742300}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &1324742303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324742300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d039a36417b5b14285b77cb5f337c3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SliderScript
-  other: {fileID: 1898764255}
 --- !u!1 &1338685139
 GameObject:
   m_ObjectHideFlags: 0
@@ -5375,7 +5307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Brillo
+  m_text: Efectos de Sonido
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a40458328347cc4438fcb76d810a4d2c, type: 2}
   m_sharedMaterial: {fileID: -5787880706772352209, guid: a40458328347cc4438fcb76d810a4d2c, type: 2}
@@ -6386,7 +6318,6 @@ GameObject:
   - component: {fileID: 1608413743}
   - component: {fileID: 1608413742}
   - component: {fileID: 1608413741}
-  - component: {fileID: 1608413740}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -6415,19 +6346,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -65}
   m_SizeDelta: {x: 600, y: 130}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1608413740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608413738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d72929d89df20444bf606576ccfeac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::sceneManager
-  scene: LevelSelect
 --- !u!114 &1608413741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6667,7 +6585,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1654337964}
-  - component: {fileID: 1654337965}
   m_Layer: 0
   m_Name: Scene Manager
   m_TagString: Untagged
@@ -6690,19 +6607,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1654337965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1654337963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d72929d89df20444bf606576ccfeac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::sceneManager
-  scene: 
 --- !u!1 &1656201588
 GameObject:
   m_ObjectHideFlags: 0
@@ -7268,7 +7172,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Volumen
+  m_text: Musica
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a40458328347cc4438fcb76d810a4d2c, type: 2}
   m_sharedMaterial: {fileID: -5787880706772352209, guid: a40458328347cc4438fcb76d810a4d2c, type: 2}
@@ -7347,35 +7251,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1788574756}
   m_CullTransparentMesh: 1
---- !u!1 &1832770748 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6170094771771220641, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
-  m_PrefabInstance: {fileID: 8386944916174463465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1832770750 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3527679673365305197, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
   m_PrefabInstance: {fileID: 8386944916174463465}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832770748}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!114 &1832770751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832770748}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d039a36417b5b14285b77cb5f337c3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SliderScript
-  other: {fileID: 1303734498}
 --- !u!1 &1837438804
 GameObject:
   m_ObjectHideFlags: 0
@@ -7965,7 +7851,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1898764254}
   - component: {fileID: 1898764255}
-  - component: {fileID: 1898764256}
   m_Layer: 5
   m_Name: Brillo Slider
   m_TagString: Untagged
@@ -8046,9 +7931,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1898764256}
-        m_TargetAssemblyTypeName: SliderScript, Assembly-CSharp
-        m_MethodName: OnChange
+      - m_Target: {fileID: 11400000, guid: e88ffccbf25e33a46b61688643788ddc, type: 2}
+        m_TargetAssemblyTypeName: Scene, Assembly-CSharp
+        m_MethodName: SetSFX
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8058,19 +7943,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1898764256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898764253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d039a36417b5b14285b77cb5f337c3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SliderScript
-  other: {fileID: 1324742302}
 --- !u!1 &1934725525
 GameObject:
   m_ObjectHideFlags: 0
@@ -9006,6 +8878,10 @@ PrefabInstance:
       propertyPath: otherCanvas
       value: 
       objectReference: {fileID: 1098373572}
+    - target: {fileID: 1872502073105140810, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
+      propertyPath: m_text
+      value: Musica
+      objectReference: {fileID: 0}
     - target: {fileID: 2390406369395564415, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -9017,18 +8893,18 @@ PrefabInstance:
     - target: {fileID: 2390406369395564415, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1324742303}
+      objectReference: {fileID: 11400000, guid: e88ffccbf25e33a46b61688643788ddc, type: 2}
     - target: {fileID: 2390406369395564415, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2390406369395564415, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnChange
+      value: SetSFX
       objectReference: {fileID: 0}
     - target: {fileID: 2390406369395564415, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SliderScript, Assembly-CSharp
+      value: Scene, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2390406369395564415, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -9036,7 +8912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3527679673365305197, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3527679673365305197, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -9045,10 +8921,14 @@ PrefabInstance:
     - target: {fileID: 3527679673365305197, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1832770751}
+      objectReference: {fileID: 0}
     - target: {fileID: 3527679673365305197, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527679673365305197, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetMusic
       objectReference: {fileID: 0}
     - target: {fileID: 3527679673365305197, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -9174,6 +9054,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6234088389380411330, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
+      propertyPath: m_text
+      value: Efectos de Sonido
+      objectReference: {fileID: 0}
     - target: {fileID: 7544645729726234968, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -9240,13 +9124,29 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 526533983}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6170094771771220641, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6360592963728735297, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1832770751}
-    - targetCorrespondingSourceObject: {fileID: 6034634409552896047, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1324742303}
+      addedObject: {fileID: 8386944916174463467}
   m_SourcePrefab: {fileID: 100100000, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
+--- !u!1 &8386944916174463466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6360592963728735297, guid: c012662fc7de96c40b428f421db6ece1, type: 3}
+  m_PrefabInstance: {fileID: 8386944916174463465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8386944916174463467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8386944916174463466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1a252706e9f254597f1b3e6dc3b56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeMaster
+  sfxSlider: {fileID: 1324742302}
+  musicSlider: {fileID: 1832770750}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class audioScript : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public AudioClip[] songs;
     public AudioSource continiousAudio;
     [SerializeField] AudioSource audioPlayer;
     [SerializeField] AudioClip audioClip;
-
-    public void PlayAudio()
-    {
-        audioSource.Play(0);
-    }
 
 
     private void Awake()
@@ -21,6 +16,10 @@ public class audioScript : MonoBehaviour
             audioPlayer.clip = audioClip;
             audioPlayer.PlayDelayed(0.1f);
         }
+        if (songs.Length == 0) return;
+        int rand = Random.Range(0, songs.Length);
+        continiousAudio.clip = songs[rand];
+        continiousAudio.PlayDelayed(1f);
     }
 
 }

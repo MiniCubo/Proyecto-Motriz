@@ -1,13 +1,15 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(fileName = "Scene", menuName = "Scriptable Objects/Scene")]
 public class Scene : ScriptableObject
 {
     private static Scene _instance;
-    [SerializeField] private AudioMixer mixer;
+    [SerializeField] public AudioMixer mixer;
 
     public static Scene Instance
     {
@@ -25,7 +27,8 @@ public class Scene : ScriptableObject
             return _instance;
         }
     }
-
+    public event Action<float> OnSFXChange;
+    public event Action<float> OnMusicChange;
 
 
     public void LoadScene(string scene)
@@ -48,10 +51,18 @@ public class Scene : ScriptableObject
         Destroy(GameObject.Find(objectName));
     }
 
-    public void SetVolume(float volume)
+    public void SetMusic(float volume)
     {
         float dB = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20f;
-        mixer.SetFloat("MasterVolume", dB);
+        mixer.SetFloat("MusicVolume", dB);
+        OnMusicChange?.Invoke(volume);
+    }
+
+    public void SetSFX(float volume)
+    {
+        float dB = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20f;
+        mixer.SetFloat("SFXVolume", dB);
+        OnSFXChange?.Invoke(volume);
     }
 
     public void PlayMusic(AudioSource audio)

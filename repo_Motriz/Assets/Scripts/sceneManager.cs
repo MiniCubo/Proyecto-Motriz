@@ -12,7 +12,7 @@ public class sceneManager : MonoBehaviour
         {
             Display.displays[i].Activate();
         }
-        Debug.Log(Display.displays.Length);
+        Debug.Log(Display.displays.Length, this);
     }
 
     public void LoadScene()
