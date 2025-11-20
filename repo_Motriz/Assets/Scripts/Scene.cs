@@ -92,6 +92,15 @@ public class Scene : ScriptableObject
         UI.SetActive(!UI.activeInHierarchy);
     }
 
+    public void QuitApplication()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
     public void ChangeSlider(float value)
     {
 
